@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">eStore</string>
+    <string name="error_invalid_sms_code">sample_error_message</string>
+    <string name="error_unknown_error">Unknown error.</string>
+    <string name="error_timeout">Pure network.</string>
+    <string name="error_network_error">Error while connecting.</string>
+</resources>

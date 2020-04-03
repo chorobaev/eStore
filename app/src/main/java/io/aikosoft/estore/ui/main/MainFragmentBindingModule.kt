@@ -7,5 +7,5 @@ import dagger.android.ContributesAndroidInjector
 abstract class MainFragmentBindingModule {
 
     @ContributesAndroidInjector
-    abstract fun bindMainFragment(): MainFragment
+    abstract fun bindMainFragment(): BrowseFragment
 }

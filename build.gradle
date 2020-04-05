@@ -16,7 +16,7 @@ buildscript {
         lifecyleVersion = '2.2.0'
         mapServicesVersion = '0.10.1'
         mapsUtilityVersion = '0.5'
-        materialVersion = '1.0.0'
+        materialVersion = '1.1.0'
         okHttpVersion = '3.12.1'
         playServicesVersion = '17.0.0'
         retrofitVersion = '2.3.0'
@@ -24,6 +24,7 @@ buildscript {
         rxJavaVersion = '2.0.2'
         slf4jVersion = '1.7.25'
         testRunnerVersion = '1.2.0'
+        viewPager2Version = '1.0.0'
     }
     repositories {
         google()

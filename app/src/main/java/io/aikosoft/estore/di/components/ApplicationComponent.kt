@@ -8,14 +8,19 @@ import dagger.android.support.AndroidSupportInjectionModule
 import dagger.android.support.DaggerApplication
 import io.aikosoft.estore.di.modules.ApplicationModule
 import io.aikosoft.estore.di.modules.ContextModule
+import io.aikosoft.estore.di.modules.RepositoryModule
 import io.aikosoft.estore.ui.EStoreApp
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [
-    ContextModule::class,
-    AndroidSupportInjectionModule::class,
-    ApplicationModule::class])
+@Component(
+    modules = [
+        ContextModule::class,
+        AndroidSupportInjectionModule::class,
+        ApplicationModule::class,
+        RepositoryModule::class
+    ]
+)
 interface ApplicationComponent : AndroidInjector<DaggerApplication> {
 
     @Component.Builder

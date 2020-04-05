@@ -7,7 +7,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "io.jachoteam.taxiappclient"
+        applicationId "io.aikosoft.estore"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 10
@@ -37,6 +37,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintVersion"
     implementation "androidx.core:core-ktx:$coreVersion"
+    implementation "androidx.viewpager2:viewpager2:$viewPager2Version"
 
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecyleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecyleVersion"

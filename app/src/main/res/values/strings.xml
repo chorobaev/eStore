@@ -9,4 +9,9 @@
     <string name="menu_brows">Browse</string>
     <string name="menu_settings">Settings</string>
     <string name="main_hint_search">I am shopping for ...</string>
+    <string name="browse_type_popular">Popular</string>
+    <string name="browse_type_recently_viewed">Recently viewed</string>
+    <string name="float_currency">%.2f USD</string>
+    <string name="int_percent">%d%%</string>
+    <string name="browse_msg_almost_gone">Almost gone!</string>
 </resources>

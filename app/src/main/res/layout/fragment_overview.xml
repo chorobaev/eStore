@@ -2,51 +2,24 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <io.aikosoft.estore.views.NestedScrollableHost
-        android:id="@+id/images_container"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ccc"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/content_buy"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/images_view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="420dp" />
-    </io.aikosoft.estore.views.NestedScrollableHost>
+        <include layout="@layout/content_details_overview" />
 
-    <TextView
-        android:id="@+id/tv_image_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="@drawable/bg_image_count"
-        android:drawableStart="@drawable/ic_image_multiple"
-        android:drawableLeft="@drawable/ic_image_multiple"
-        android:drawablePadding="8dp"
-        android:gravity="center"
-        android:padding="8dp"
-        android:scaleX="0.7"
-        android:scaleY="0.7"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@id/images_container"
-        app:layout_constraintTop_toTopOf="@id/images_container"
-        tools:text="1" />
+    </ScrollView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_like"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        app:layout_constraintBottom_toBottomOf="@id/images_container"
-        app:layout_constraintEnd_toEndOf="@id/images_container"
-        app:layout_constraintTop_toBottomOf="@id/images_container"
-        app:srcCompat="@drawable/ic_heart_outline" />
+    <include
+        android:id="@+id/content_buy"
+        layout="@layout/content_buy"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

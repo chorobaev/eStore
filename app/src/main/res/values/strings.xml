@@ -17,4 +17,5 @@
     <string name="details_title">Details</string>
     <string name="details_tab_overview">Overview</string>
     <string name="details_tab_related">Related</string>
+    <string name="content_msg_buy">Buy</string>
 </resources>

@@ -28,7 +28,7 @@ object Mocker {
 
     val singleProducts: Single<Products>
         get() = Single.create {
-            Thread.sleep(1000)
+            Thread.sleep(100)
             it.onSuccess(products)
         }
 }

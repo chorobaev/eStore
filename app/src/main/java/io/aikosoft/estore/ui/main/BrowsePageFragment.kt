@@ -1,11 +1,13 @@
 package io.aikosoft.estore.ui.main
 
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import io.aikosoft.estore.R
 import io.aikosoft.estore.base.BaseFragment
 import io.aikosoft.estore.models.BrowsePageType
 import io.aikosoft.estore.models.Product
+import io.aikosoft.estore.ui.detail.DetailsActivity
 import io.aikosoft.estore.ui.main.adapters.ProductGridAdapter
 import kotlinx.android.synthetic.main.fragment_page_browse.*
 
@@ -36,8 +38,10 @@ class BrowsePageFragment : BaseFragment() {
     }
 
     private fun startDetailActivity(product: Product) {
-        // TODO: implement detail activity starting
-        log(product.toString())
+        Intent(baseActivity, DetailsActivity::class.java).also {
+            it.putExtra(DetailsActivity.PRODUCT, product)
+            startActivity(it)
+        }
     }
 
     override fun onObserveViewModel() {
@@ -48,6 +52,11 @@ class BrowsePageFragment : BaseFragment() {
         })
 
         browseViewModel.fetchProducts(BrowsePageType.Popular)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        log("destroyed")
     }
 
     companion object {

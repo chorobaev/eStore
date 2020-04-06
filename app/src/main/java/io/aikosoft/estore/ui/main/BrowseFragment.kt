@@ -20,19 +20,19 @@ class BrowseFragment : BaseFragment() {
     }
 
     override fun onInitUI(firstInit: Boolean) {
-        onInitViewPager()
-        onInitTabLayout()
+        initViewPager()
+        initTabLayout()
     }
 
-    private fun onInitViewPager() {
+    private fun initViewPager() {
         browseViewPagerAdapter = BrowseViewPagerAdapter(this)
-        view_pager.adapter = browseViewPagerAdapter
+        browse_view_pager.adapter = browseViewPagerAdapter
     }
 
-    private fun onInitTabLayout() {
-        tab_layout.addOnTabSelectedListener(OnTabSelectedBoldListener())
+    private fun initTabLayout() {
+        browse_tab_layout.addOnTabSelectedListener(OnTabSelectedBoldListener())
 
-        TabLayoutMediator(tab_layout, view_pager) { tab, position ->
+        TabLayoutMediator(browse_tab_layout, browse_view_pager) { tab, position ->
             val tabNameRes = BrowsePageType.values()[position].stringRes
             tab.text = getString(tabNameRes)
         }.attach()

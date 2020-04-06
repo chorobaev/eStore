@@ -7,6 +7,7 @@ import dagger.Module
 import dagger.multibindings.IntoMap
 import io.aikosoft.estore.base.CommonViewModel
 import io.aikosoft.estore.base.ViewModelFactory
+import io.aikosoft.estore.ui.detail.DetailViewModel
 import io.aikosoft.estore.ui.main.BrowseViewModel
 import io.jachoteam.taxiappclient.di.util.ViewModelKey
 
@@ -23,6 +24,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(BrowseViewModel::class)
     abstract fun bindMainViewModel(mainViewModel: BrowseViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DetailViewModel::class)
+    abstract fun bindDetailViewModel(detailViewModel: DetailViewModel): ViewModel
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory

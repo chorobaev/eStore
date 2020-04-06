@@ -28,6 +28,16 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         nav_view.setNavigationItemSelectedListener(this)
     }
 
+    override fun onSetOnClickListeners() {
+        tv_search.setOnClickListener {
+            // TODO: open search activity
+        }
+
+        iv_checkout.setOnClickListener {
+            // TODO: open checkout activity
+        }
+    }
+
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         return false
     }

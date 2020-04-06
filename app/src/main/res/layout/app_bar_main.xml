@@ -2,6 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
@@ -26,10 +27,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    tools:ignore="UseCompoundDrawables">
 
-                    <EditText
-                        android:id="@+id/et_search"
+                    <TextView
+                        android:id="@+id/tv_search"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -37,7 +39,6 @@
                         android:drawableStart="@drawable/ic_search"
                         android:drawableLeft="@drawable/ic_search"
                         android:drawablePadding="8dp"
-                        android:inputType="text"
                         android:hint="@string/main_hint_search"
                         android:padding="8dp"
                         android:textColor="@android:color/white"
@@ -50,13 +51,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/activity_horizontal_margin"
                         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        app:srcCompat="@drawable/ic_checkout">
-
-                        <requestFocus />
-
-                    </ImageView>
+                        app:srcCompat="@drawable/ic_checkout" />
 
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>

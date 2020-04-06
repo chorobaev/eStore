@@ -10,8 +10,11 @@ import io.aikosoft.estore.models.Product
 import io.aikosoft.estore.utils.toViesibility
 import kotlinx.android.synthetic.main.item_product.view.*
 
+private typealias OnProductClickListener = ((Product) -> Unit)
+
 class ProductGridAdapter : RecyclerView.Adapter<ProductGridAdapter.ViewHolder>() {
 
+    private var onProductClickListener: OnProductClickListener? = null
     private var products = ArrayList<Product>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,7 +37,11 @@ class ProductGridAdapter : RecyclerView.Adapter<ProductGridAdapter.ViewHolder>()
         notifyDataSetChanged()
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    fun setOnProductsClickListener(onProductClickListener: OnProductClickListener?) {
+        this.onProductClickListener = onProductClickListener
+    }
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(product: Product) {
             with(itemView) {
@@ -48,6 +55,14 @@ class ProductGridAdapter : RecyclerView.Adapter<ProductGridAdapter.ViewHolder>()
                 }
 
                 tv_almost_gone.visibility = product.isAlmostGone.toViesibility()
+            }
+
+            itemView.setOnClickListener {
+                try {
+                    onProductClickListener?.invoke(products[adapterPosition])
+                } catch (ignored: IndexOutOfBoundsException) {
+
+                }
             }
         }
     }

@@ -3,6 +3,7 @@ package io.aikosoft.estore.base
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import io.aikosoft.estore.utils.MyLogger
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -10,7 +11,7 @@ import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
-abstract class BaseViewModel : ViewModel() {
+abstract class BaseViewModel : ViewModel(), MyLogger {
 
     protected var errorListener: OnErrorListener? = null
         private set

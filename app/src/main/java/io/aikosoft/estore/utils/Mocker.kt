@@ -13,7 +13,7 @@ object Mocker {
             for (i in 1..10) {
                 products.add(
                     Product(
-                        id = 0,
+                        id = i,
                         name = "Apple",
                         price = 100.0 + 7 * i,
                         sellInfo = "1000+ bought",

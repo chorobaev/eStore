@@ -18,4 +18,7 @@
     <string name="details_tab_overview">Overview</string>
     <string name="details_tab_related">Related</string>
     <string name="content_msg_buy">Buy</string>
+    <string name="details_msg_store_reviews">Store Reviews</string>
+    <string name="details_msg_view_all_store_reviews">View All</string>
+    <string name="details_no_reviews">No reviews</string>
 </resources>

@@ -12,10 +12,16 @@ import kotlinx.android.synthetic.main.activity_details.*
 
 class DetailsActivity : BaseActivity() {
 
+    private lateinit var detailsViewModel: DetailsViewModel
     private lateinit var product: Product
     private lateinit var detailsViewPagerAdapter: DetailsViewPagerAdapter
 
     override val layoutRes: Int get() = R.layout.activity_details
+
+    override fun onInitViewModel() {
+        detailsViewModel = getViewModel()
+        detailsViewModel.product
+    }
 
     override fun onInitUI(firstInit: Boolean) {
         product = intent?.getSerializableExtra(PRODUCT) as? Product
@@ -53,6 +59,10 @@ class DetailsActivity : BaseActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onObserveViewModel() {
+        detailsViewModel.product = product
     }
 
     override fun onSetOnClickListeners() {

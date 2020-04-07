@@ -6,4 +6,5 @@
     <color name="colorTextDisabled">#ddd</color>
     <color name="colorTextPrimary">#303030</color>
     <color name="colorAccentSecondary">#FF5622</color>
+    <color name="colorLightGray">#dedede</color>
 </resources>

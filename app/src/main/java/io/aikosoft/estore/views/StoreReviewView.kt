@@ -49,7 +49,7 @@ class StoreReviewView(context: Context, attributeSet: AttributeSet? = null) :
             .inflate(R.layout.item_store_review, store_review_content, false)
 
         with(view) {
-            tv_reviewer_name.text = storeReview.reviewer
+            tv_reviewer_name.text = storeReview.reviewerName
             tv_review_message.text = storeReview.reviewMessage
 
             // TODO: implement N time ago logic

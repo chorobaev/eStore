@@ -21,4 +21,8 @@
     <string name="details_msg_store_reviews">Store Reviews</string>
     <string name="details_msg_view_all_store_reviews">View All</string>
     <string name="details_no_reviews">No reviews</string>
+    <string name="details_msg_sold_by">Sold By</string>
+    <string name="details_msg_store_rating">Store Rating</string>
+    <string name="breck_int_breck">(%d)</string>
+    <string name="rating_value">%.1f</string>
 </resources>

@@ -1,5 +1,6 @@
 package io.aikosoft.estore.ui.detail
 
+import android.os.Bundle
 import android.view.MenuItem
 import com.google.android.material.tabs.TabLayoutMediator
 import io.aikosoft.estore.R
@@ -18,15 +19,19 @@ class DetailsActivity : BaseActivity() {
 
     override val layoutRes: Int get() = R.layout.activity_details
 
-    override fun onInitViewModel() {
-        detailsViewModel = getViewModel()
-        detailsViewModel.product
-    }
-
-    override fun onInitUI(firstInit: Boolean) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         product = intent?.getSerializableExtra(PRODUCT) as? Product
             ?: throw IllegalArgumentException("Product is not provided!")
 
+        super.onCreate(savedInstanceState)
+    }
+
+    override fun onInitViewModel() {
+        detailsViewModel = getViewModel()
+        detailsViewModel.setProduct(product)
+    }
+
+    override fun onInitUI(firstInit: Boolean) {
         initAppBar()
         initViewPager()
         initTabLayout()
@@ -62,7 +67,7 @@ class DetailsActivity : BaseActivity() {
     }
 
     override fun onObserveViewModel() {
-        detailsViewModel.product = product
+
     }
 
     override fun onSetOnClickListeners() {

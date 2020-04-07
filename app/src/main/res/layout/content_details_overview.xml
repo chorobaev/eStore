@@ -93,7 +93,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_description" />
 
     <TextView
-        android:id="@+id/tv_rated_people_count"
+        android:id="@+id/tv_rated_count"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -110,5 +110,41 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         app:layout_constraintTop_toBottomOf="@id/rating_bar" />
+
+    <LinearLayout
+        android:id="@+id/sold_by_section"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorLightGray"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/store_reviews">
+
+        <TextView
+            android:id="@+id/tv_sold_by_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_weight="1"
+            android:text="@string/details_msg_sold_by"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_store_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:text="@string/details_msg_store_rating"
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <include
+        layout="@layout/item_store"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/sold_by_section" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

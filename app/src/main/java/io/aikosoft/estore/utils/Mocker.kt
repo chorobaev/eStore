@@ -2,12 +2,15 @@ package io.aikosoft.estore.utils
 
 import io.aikosoft.estore.models.Product
 import io.aikosoft.estore.models.Products
+import io.aikosoft.estore.models.Store
 import io.aikosoft.estore.models.StoreReview
 import io.reactivex.Single
 import java.util.*
 import kotlin.collections.ArrayList
 
 object Mocker {
+
+    private const val DELAY = 100L
 
     @get:SuppressWarnings
     val products: Products
@@ -20,8 +23,13 @@ object Mocker {
                         name = "Apple",
                         price = 100.0 + 7 * i,
                         sellInfo = "1000+ bought",
+                        description = "I put it in my source code because we want to support lower " +
+                                "API levels. It is working but the infinite " +
+                                "loop is not a good practice.",
+                        rating = 3 + 0.2 * i,
+                        ratedCount = 10 + 5 * i,
                         discount = if (i % 3 == 0) 0 else 10 + i,
-                        imageUrl = "",
+                        imageUrls = listOf("", ""),
                         isAlmostGone = i % 5 == 0
                     )
                 )
@@ -31,7 +39,7 @@ object Mocker {
 
     val singleProducts: Single<Products>
         get() = Single.create {
-            Thread.sleep(100)
+            Thread.sleep(DELAY)
             it.onSuccess(products)
         }
 
@@ -43,7 +51,7 @@ object Mocker {
                 reviews.add(
                     StoreReview(
                         id = i,
-                        reviewer = listOf("Maxim", "Alex", "Tom")[i - 1],
+                        reviewerName = listOf("Maxim", "Alex", "Tom")[i - 1],
                         reviewedDate = Date(),
                         rating = 3.5 + 0.5 * i,
                         reviewMessage = "If you are building social network or chat app then " +
@@ -57,9 +65,26 @@ object Mocker {
 
     val singleStoreReviews: Single<List<StoreReview>>
         get() = Single.create {
-            Thread.sleep(100)
+            Thread.sleep(DELAY)
             it.onSuccess(storeReviews)
         }
+
+    @get:SuppressWarnings
+    val store: Store
+        get() {
+            return Store(
+                id = 1,
+                name = "eStore",
+                rating = 4.5F,
+                ratedCount = 105
+            )
+        }
+
+    val singleStore: Single<Store>
+    get() = Single.create {
+        Thread.sleep(DELAY)
+        it.onSuccess(store)
+    }
 
     fun <T> getSingleEmptyList(): Single<List<T>> {
         return Single.create {

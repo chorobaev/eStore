@@ -6,7 +6,7 @@ typealias StoreReviews = List<StoreReview>
 
 data class StoreReview(
     val id: Int,
-    val reviewer: String,
+    val reviewerName: String,
     val reviewedDate: Date,
     val rating: Double,
     val reviewMessage: String

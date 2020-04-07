@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import io.aikosoft.estore.base.BaseViewModel
 import io.aikosoft.estore.data.repositories.ProductRepository
 import io.aikosoft.estore.models.Product
+import io.aikosoft.estore.models.Store
 import io.aikosoft.estore.models.StoreReviews
 import javax.inject.Inject
 
@@ -12,19 +13,32 @@ class DetailsViewModel @Inject constructor(
     private val productRepository: ProductRepository
 ) : BaseViewModel() {
 
-    var product: Product? = null
-        set(value) {
-            field = value
-            value?.let { fetchStoreReviews(value.id) }
-        }
-
+    private val _product = MutableLiveData<Product>()
     private val _storeReviews = MutableLiveData<StoreReviews>()
+    private val _store = MutableLiveData<Store>()
 
+    val product: LiveData<Product> get() = _product
     val storeReviews: LiveData<StoreReviews> get() = _storeReviews
+    val store: LiveData<Store> get() = _store
 
-    private fun fetchStoreReviews(productId: Int) {
+    fun setProduct(product: Product) {
+        _product.value = product
+    }
+
+    fun fetchAdditionalData(productId: Int) {
+        fetchStoreReviews(productId)
+        fetchStore(productId)
+    }
+
+    fun fetchStoreReviews(productId: Int) {
         productRepository.getStoreReviewsByProductId(productId).request {
             _storeReviews.value = it
+        }
+    }
+
+    fun fetchStore(productId: Int) {
+        productRepository.getStoreByProductId(productId).request {
+            _store.value = it
         }
     }
 }

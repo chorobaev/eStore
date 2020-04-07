@@ -9,7 +9,10 @@ data class Product(
     val name: String,
     val price: Double,
     val sellInfo: String,
+    val description: String,
+    val rating: Double,
+    val ratedCount: Int,
     val discount: Int,
-    val imageUrl: String,
+    val imageUrls: List<String>,
     val isAlmostGone: Boolean = false
 ) : Serializable

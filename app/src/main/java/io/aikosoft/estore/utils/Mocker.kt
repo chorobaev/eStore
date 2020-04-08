@@ -80,11 +80,17 @@ object Mocker {
             )
         }
 
+    val singleUnit: Single<Unit>
+        get() = Single.create {
+            Thread.sleep(DELAY)
+            it.onSuccess(Unit)
+        }
+
     val singleStore: Single<Store>
-    get() = Single.create {
-        Thread.sleep(DELAY)
-        it.onSuccess(store)
-    }
+        get() = Single.create {
+            Thread.sleep(DELAY)
+            it.onSuccess(store)
+        }
 
     fun <T> getSingleEmptyList(): Single<List<T>> {
         return Single.create {

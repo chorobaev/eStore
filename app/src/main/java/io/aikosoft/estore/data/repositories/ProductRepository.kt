@@ -12,4 +12,6 @@ interface ProductRepository {
     fun getStoreReviewsByProductId(productId: Int): Single<StoreReviews>
 
     fun getStoreByProductId(productId: Int): Single<Store>
+
+    fun addProductToCart(productId: Int): Single<Unit>
 }

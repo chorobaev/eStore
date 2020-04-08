@@ -25,4 +25,6 @@
     <string name="details_msg_store_rating">Store Rating</string>
     <string name="breck_int_breck">(%d)</string>
     <string name="rating_value">%.1f</string>
+    <string name="details_msg_item_added_to_cart">Item Added to Cart</string>
+    <string name="you_saved_double_currency">You saved %.2f USD</string>
 </resources>

@@ -7,6 +7,7 @@ import io.aikosoft.estore.data.repositories.ProductRepository
 import io.aikosoft.estore.models.Product
 import io.aikosoft.estore.models.Store
 import io.aikosoft.estore.models.StoreReviews
+import io.aikosoft.estore.utils.SingleLiveEvent
 import javax.inject.Inject
 
 class DetailsViewModel @Inject constructor(
@@ -16,29 +17,40 @@ class DetailsViewModel @Inject constructor(
     private val _product = MutableLiveData<Product>()
     private val _storeReviews = MutableLiveData<StoreReviews>()
     private val _store = MutableLiveData<Store>()
+    private val _productAddingSucces = SingleLiveEvent<Unit>()
 
     val product: LiveData<Product> get() = _product
     val storeReviews: LiveData<StoreReviews> get() = _storeReviews
     val store: LiveData<Store> get() = _store
+    val productAddingToCartSuccess: LiveData<Unit> get() = _productAddingSucces
+
+    val productId: Int
+        get() = _product.value?.id ?: throw IllegalArgumentException("Product must not be null")
 
     fun setProduct(product: Product) {
         _product.value = product
     }
 
-    fun fetchAdditionalData(productId: Int) {
+    fun fetchAdditionalData() {
         fetchStoreReviews(productId)
         fetchStore(productId)
     }
 
-    fun fetchStoreReviews(productId: Int) {
+    private fun fetchStoreReviews(productId: Int) {
         productRepository.getStoreReviewsByProductId(productId).request {
             _storeReviews.value = it
         }
     }
 
-    fun fetchStore(productId: Int) {
+    private fun fetchStore(productId: Int) {
         productRepository.getStoreByProductId(productId).request {
             _store.value = it
+        }
+    }
+
+    fun addProductToCart() {
+        productRepository.addProductToCart(productId).request {
+            _productAddingSucces.call()
         }
     }
 }

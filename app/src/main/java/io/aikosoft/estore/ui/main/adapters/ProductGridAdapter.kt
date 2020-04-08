@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.aikosoft.estore.R
 import io.aikosoft.estore.models.Product
-import io.aikosoft.estore.utils.toViesibility
+import io.aikosoft.estore.utils.toVisibility
 import kotlinx.android.synthetic.main.item_product.view.*
 
 private typealias OnProductClickListener = ((Product) -> Unit)
@@ -54,7 +54,7 @@ class ProductGridAdapter : RecyclerView.Adapter<ProductGridAdapter.ViewHolder>()
                     tv_discount.text = context.getString(R.string.int_percent, product.discount)
                 }
 
-                tv_almost_gone.visibility = product.isAlmostGone.toViesibility()
+                tv_almost_gone.visibility = product.isAlmostGone.toVisibility()
             }
 
             itemView.setOnClickListener {

@@ -8,7 +8,7 @@ import android.widget.FrameLayout
 import io.aikosoft.estore.R
 import io.aikosoft.estore.models.StoreReview
 import io.aikosoft.estore.utils.MyLogger
-import io.aikosoft.estore.utils.toViesibility
+import io.aikosoft.estore.utils.toVisibility
 import kotlinx.android.synthetic.main.item_store_review.view.*
 import kotlinx.android.synthetic.main.view_store_review.view.*
 
@@ -28,7 +28,7 @@ class StoreReviewView(context: Context, attributeSet: AttributeSet? = null) :
         }
         itemViews.clear()
 
-        tv_no_store_reviews.visibility = newReviews.isNullOrEmpty().toViesibility()
+        tv_no_store_reviews.visibility = newReviews.isNullOrEmpty().toVisibility()
 
         if (newReviews != null) {
             var index = 0

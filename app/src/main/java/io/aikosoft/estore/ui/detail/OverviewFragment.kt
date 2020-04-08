@@ -1,14 +1,17 @@
 package io.aikosoft.estore.ui.detail
 
 import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import io.aikosoft.estore.R
 import io.aikosoft.estore.base.BaseFragment
 import io.aikosoft.estore.models.Product
 import io.aikosoft.estore.models.Store
 import io.aikosoft.estore.ui.detail.adapters.ImageViewPagerAdapter
+import io.aikosoft.estore.views.ItemAddedSnackbar
 import kotlinx.android.synthetic.main.content_buy.*
 import kotlinx.android.synthetic.main.content_details_overview.*
 import kotlinx.android.synthetic.main.item_store.*
+import kotlinx.android.synthetic.main.view_store_review.*
 
 class OverviewFragment : BaseFragment() {
 
@@ -42,10 +45,14 @@ class OverviewFragment : BaseFragment() {
         detailViewModel.store.observe(this, Observer {
             it?.let { onStoreReceived(it) }
         })
+
+        detailViewModel.productAddingToCartSuccess.observe(this, Observer {
+            ItemAddedSnackbar.make(view!!, "", 14.5, Snackbar.LENGTH_LONG)?.show()
+        })
     }
 
     private fun onProductReceived(product: Product) {
-        detailViewModel.fetchAdditionalData(product.id)
+        detailViewModel.fetchAdditionalData()
 
         tv_image_count.text = product.imageUrls.size.toString()
         tv_description.text = product.description
@@ -59,5 +66,31 @@ class OverviewFragment : BaseFragment() {
         tv_store_rating_value.text = getString(R.string.rating_value, store.rating)
         tv_store_rated_count.text = getString(R.string.breck_int_breck, store.ratedCount)
         store_rating_bar.rating = store.rating
+    }
+
+    override fun onSetOnClickListeners() {
+        fab_like.setOnClickListener {
+            // TODO: implement like logic
+        }
+
+        fab_share.setOnClickListener {
+            // TODO: implement share product logic
+        }
+
+        tv_view_all_store_reviews.setOnClickListener {
+            // TODO: implement view all product reviews
+        }
+
+        tv_view_store_rating.setOnClickListener {
+            // TODO: implement view store reviews
+        }
+
+        btn_buy.setOnClickListener {
+            addProductToCart()
+        }
+    }
+
+    private fun addProductToCart() {
+        detailViewModel.addProductToCart()
     }
 }

@@ -22,4 +22,8 @@ class ProductRepositoryImpl(
     override fun getStoreByProductId(productId: Int): Single<Store> {
         return Mocker.singleStore
     }
+
+    override fun addProductToCart(productId: Int): Single<Unit> {
+        return Mocker.singleUnit
+    }
 }

@@ -74,8 +74,8 @@
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:textSize="18sp"
         android:maxLength="300"
+        android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@id/fab_like"
         tools:text="@tools:sample/lorem/random" />
 
@@ -132,7 +132,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_store_rating"
+            android:id="@+id/tv_view_store_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"

@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.squareup.picasso.Picasso
 import io.aikosoft.estore.R
 import io.aikosoft.estore.utils.MyLogger
 import io.aikosoft.estore.utils.findSuitableParent
@@ -40,7 +41,7 @@ class ItemAddedSnackbar(
                     false
                 ) as ItemAddedSnackbarView
 
-                // TODO: add image showing using Picasso
+                Picasso.get().load(imageUrl).into(customView.iv_product_image)
                 customView.tv_you_saved.text =
                     customView.context.getString(R.string.you_saved_double_currency, saved)
 

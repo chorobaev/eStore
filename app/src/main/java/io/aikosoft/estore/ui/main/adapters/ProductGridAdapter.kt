@@ -5,6 +5,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import io.aikosoft.estore.R
 import io.aikosoft.estore.models.Product
 import io.aikosoft.estore.utils.toVisibility
@@ -55,6 +56,10 @@ class ProductGridAdapter : RecyclerView.Adapter<ProductGridAdapter.ViewHolder>()
                 }
 
                 tv_almost_gone.visibility = product.isAlmostGone.toVisibility()
+
+                if (product.imageUrls.isNotEmpty()) {
+                    Picasso.get().load(product.imageUrls.first()).into(iv_image)
+                }
             }
 
             itemView.setOnClickListener {

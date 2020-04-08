@@ -16,21 +16,13 @@ import kotlinx.android.synthetic.main.view_store_review.*
 class OverviewFragment : BaseFragment() {
 
     private lateinit var detailViewModel: DetailsViewModel
+    private lateinit var product: Product
     private lateinit var imageViewPagerAdapter: ImageViewPagerAdapter
 
     override val layoutRes: Int get() = R.layout.fragment_overview
 
     override fun onInitViewModel() {
         detailViewModel = getViewModel()
-    }
-
-    override fun onInitUI(firstInit: Boolean) {
-        initImageViewPager()
-    }
-
-    private fun initImageViewPager() {
-        imageViewPagerAdapter = ImageViewPagerAdapter(this, listOf("a", "b"))
-        images_view_pager.adapter = imageViewPagerAdapter
     }
 
     override fun onObserveViewModel() {
@@ -47,18 +39,26 @@ class OverviewFragment : BaseFragment() {
         })
 
         detailViewModel.productAddingToCartSuccess.observe(this, Observer {
-            ItemAddedSnackbar.make(view!!, "", 14.5, Snackbar.LENGTH_LONG)?.show()
+            val productImage =
+                if (product.imageUrls.isNotEmpty()) product.imageUrls.first() else ""
+            ItemAddedSnackbar.make(view!!, productImage, 14.5, Snackbar.LENGTH_LONG)?.show()
         })
     }
 
     private fun onProductReceived(product: Product) {
-        detailViewModel.fetchAdditionalData()
+        this.product = product
+        initImageViewPager()
 
         tv_image_count.text = product.imageUrls.size.toString()
         tv_description.text = product.description
         rating_bar.rating = product.rating.toFloat()
         tv_rated_count.text = getString(R.string.breck_int_breck, product.ratedCount)
         tv_price.text = getString(R.string.float_currency, product.price)
+    }
+
+    private fun initImageViewPager() {
+        imageViewPagerAdapter = ImageViewPagerAdapter(this, product.imageUrls)
+        images_view_pager.adapter = imageViewPagerAdapter
     }
 
     private fun onStoreReceived(store: Store) {

@@ -13,6 +13,14 @@ object Mocker {
     private const val DELAY = 100L
 
     @get:SuppressWarnings
+    val imageUrls: List<String>
+        get() = listOf(
+            "https://www.virginmedia.com/content/dam/virginmedia/dotcom/images" +
+                    "/mobile-browse/Apple/iPhone-Xr/blue/iphone-xr-blue-front.png",
+            "https://cdn11.bigcommerce.com/s-fowty94aox/product_images/uploaded_images/iphone-xr.png"
+        )
+
+    @get:SuppressWarnings
     val products: Products
         get() {
             val products = ArrayList<Product>()
@@ -29,7 +37,7 @@ object Mocker {
                         rating = 3 + 0.2 * i,
                         ratedCount = 10 + 5 * i,
                         discount = if (i % 3 == 0) 0 else 10 + i,
-                        imageUrls = listOf("", ""),
+                        imageUrls = imageUrls,
                         isAlmostGone = i % 5 == 0
                     )
                 )
@@ -53,6 +61,8 @@ object Mocker {
                         id = i,
                         reviewerName = listOf("Maxim", "Alex", "Tom")[i - 1],
                         reviewedDate = Date(),
+                        reviewerAvatarUrl = "https://filmschoolrejects.com/wp-content/" +
+                                "uploads/2017/04/0JRofTsuy93evl_J5.jpg",
                         rating = 3.5 + 0.5 * i,
                         reviewMessage = "If you are building social network or chat app then " +
                                 "this post is really helpful. Logic behind this thing is " +

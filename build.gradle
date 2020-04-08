@@ -18,6 +18,7 @@ buildscript {
         mapsUtilityVersion = '0.5'
         materialVersion = '1.1.0'
         okHttpVersion = '3.12.1'
+        picassoVersion = '2.71828'
         playServicesVersion = '17.0.0'
         retrofitVersion = '2.3.0'
         roomVersion = '2.2.3'

@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
+import com.squareup.picasso.Picasso
 import io.aikosoft.estore.R
 import io.aikosoft.estore.models.StoreReview
 import io.aikosoft.estore.utils.MyLogger
@@ -59,6 +60,10 @@ class StoreReviewView(context: Context, attributeSet: AttributeSet? = null) :
             // TODO: implement N time ago logic
             tv_reviewed_date.text = "1 day ego"
             reviewer_rating_bar.rating = storeReview.rating.toFloat()
+
+            storeReview.reviewerAvatarUrl?.let { url ->
+                Picasso.get().load(url).into(civ_reviewer_avatar.imageView)
+            }
         }
 
         return view

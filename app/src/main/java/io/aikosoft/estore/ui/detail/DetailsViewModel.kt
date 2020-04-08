@@ -24,14 +24,15 @@ class DetailsViewModel @Inject constructor(
     val store: LiveData<Store> get() = _store
     val productAddingToCartSuccess: LiveData<Unit> get() = _productAddingSucces
 
-    val productId: Int
+    private val productId: Int
         get() = _product.value?.id ?: throw IllegalArgumentException("Product must not be null")
 
     fun setProduct(product: Product) {
         _product.value = product
+        fetchAdditionalData()
     }
 
-    fun fetchAdditionalData() {
+    private fun fetchAdditionalData() {
         fetchStoreReviews(productId)
         fetchStore(productId)
     }

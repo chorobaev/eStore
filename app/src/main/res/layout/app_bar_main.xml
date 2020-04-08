@@ -37,12 +37,11 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_search_edit_text"
                         android:drawableStart="@drawable/ic_search"
-                        android:drawableLeft="@drawable/ic_search"
                         android:drawablePadding="8dp"
                         android:hint="@string/main_hint_search"
                         android:padding="8dp"
                         android:textColor="@android:color/white"
-                        android:textColorHint="#ddd"
+                        android:textColorHint="@color/colorTextDisabled"
                         android:textSize="16sp" />
 
                     <ImageView

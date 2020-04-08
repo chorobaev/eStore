@@ -35,6 +35,10 @@ class StoreReviewView(context: Context, attributeSet: AttributeSet? = null) :
             while (index < newReviews.size.coerceAtMost(showFirst)) {
                 getItemStoreReviewView(newReviews[index]).also { view ->
                     view.id = 1000 + index
+                    if (index + 1 == newReviews.size.coerceAtMost(showFirst)) {
+                        view.view_divider.visibility = View.GONE
+                    }
+
                     itemViews.add(view)
                     store_review_content.addView(view)
                 }

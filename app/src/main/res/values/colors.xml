@@ -3,8 +3,8 @@
     <color name="colorPrimary">#2FB7EC</color>
     <color name="colorPrimaryDark">#1BAAE2</color>
     <color name="colorAccent">#2FB7EC</color>
-    <color name="colorTextDisabled">#dedede</color>
-    <color name="colorTextPrimary">#303030</color>
+    <color name="colorTextDisabled">#98D5ED</color>
+    <color name="colorTextPrimary">#192A32</color>
     <color name="colorAccentSecondary">#FF5622</color>
-    <color name="colorLightGray">#dedede</color>
+    <color name="colorLightGray">#F3F8F8</color>
 </resources>

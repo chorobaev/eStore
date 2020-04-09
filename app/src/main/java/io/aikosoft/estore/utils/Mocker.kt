@@ -137,6 +137,43 @@ object Mocker {
             it.onSuccess(cartProducts)
         }
 
+    @get:SuppressWarnings
+    val shippingAddress: ShippingAddress
+        get() {
+            return ShippingAddress(
+                id = 1,
+                firstName = "Tom",
+                lastName = "Carter",
+                firstAddressLine = "Address 1",
+                secondAddressLine = "Address 2",
+                country = "USA",
+                stateOrProvince = "Washington",
+                city = "Washington",
+                zipPostalCode = "123456",
+                phoneNumber = "+996 222 123123"
+            )
+        }
+
+    val singleShippingAddress: Single<ShippingAddress>
+        get() = Single.create {
+            Thread.sleep(DELAY)
+            it.onSuccess(shippingAddress)
+        }
+
+    @get:SuppressWarnings
+    val paymentMethod: PaymentMethod
+        get() {
+            return PaymentMethod(
+                id = 1,
+                name = "VISA 44** **45"
+            )
+        }
+
+    val singlePaymentMethod: Single<PaymentMethod>
+        get() = Single.create {
+            Thread.sleep(DELAY)
+            it.onSuccess(paymentMethod)
+        }
 
     fun <T> getSingleEmptyList(): Single<List<T>> {
         return Single.create {

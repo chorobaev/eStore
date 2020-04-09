@@ -8,4 +8,7 @@ abstract class CartFragmentBindingModule {
 
     @ContributesAndroidInjector
     abstract fun bindCartFragment(): CartFragment
+
+    @ContributesAndroidInjector
+    abstract fun bindShoppingPaymentFragment(): ShoppingPaymentFragment
 }

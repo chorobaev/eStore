@@ -19,7 +19,7 @@ class CartFragment : BaseFragment() {
 
     override fun onInitViewModel() {
         cartViewModel = getViewModel()
-        cartViewModel.fetchCartProducts()
+        cartViewModel.fetchData()
     }
 
     override fun onInitUI(firstInit: Boolean) {

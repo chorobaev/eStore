@@ -5,6 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/section_shopping_payment"
+        layout="@layout/content_shopping_payment"
+        android:visibility="gone" />
+
     <LinearLayout
         android:id="@+id/items_in_cart_section"
         android:layout_width="match_parent"
@@ -12,10 +17,10 @@
         android:background="@color/colorLightGray"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/section_shopping_payment">
 
         <TextView
-            android:id="@+id/tv_sold_by_title"
+            android:id="@+id/tv_items_in_cart_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/activity_horizontal_margin"

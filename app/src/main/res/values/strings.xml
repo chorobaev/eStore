@@ -29,4 +29,6 @@
     <string name="you_saved_double_currency">You saved %.2f USD</string>
     <string name="cart_title">Cart</string>
     <string name="cart_msg_items_in_cart">Items in Cart</string>
+    <string name="cart_msg_ship_to">Ship to</string>
+    <string name="cart_msg_pay_with">Pay with</string>
 </resources>

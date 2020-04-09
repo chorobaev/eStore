@@ -46,8 +46,16 @@ class CartProductAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is CartProductViewHolder) {
-            holder.bind(position)
+            holder.bind(getRelativeAdapterPosition(position))
         }
+    }
+
+    private fun getRelativeAdapterPosition(actualPosition: Int): Int {
+        var position = actualPosition
+        if (headerLayoutRes != -1) {
+            position--
+        }
+        return position
     }
 
     override fun getItemCount(): Int {
@@ -78,7 +86,7 @@ class CartProductAdapter(
     ) : RecyclerView.ViewHolder(itemView), MyLogger {
 
         fun bind(position: Int) {
-            //log("In view: ${cartProducts[position]}")
+            log("In view: ${cartProducts[position]}")
         }
     }
 

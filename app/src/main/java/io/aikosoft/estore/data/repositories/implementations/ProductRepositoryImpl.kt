@@ -1,5 +1,6 @@
 package io.aikosoft.estore.data.repositories.implementations
 
+import io.aikosoft.estore.data.network.ProductClient
 import io.aikosoft.estore.data.repositories.ProductRepository
 import io.aikosoft.estore.models.Products
 import io.aikosoft.estore.models.Store
@@ -8,7 +9,7 @@ import io.aikosoft.estore.utils.Mocker
 import io.reactivex.Single
 
 class ProductRepositoryImpl(
-
+    private val productClient: ProductClient
 ) : ProductRepository {
 
     override fun getPopularProducts(): Single<Products> {

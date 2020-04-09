@@ -31,4 +31,8 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="AppBarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:homeAsUpIndicator">@drawable/ic_close</item>
+    </style>
+
 </resources>

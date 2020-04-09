@@ -1,9 +1,6 @@
 package io.aikosoft.estore.utils
 
-import io.aikosoft.estore.models.Product
-import io.aikosoft.estore.models.Products
-import io.aikosoft.estore.models.Store
-import io.aikosoft.estore.models.StoreReview
+import io.aikosoft.estore.models.*
 import io.reactivex.Single
 import java.util.*
 import kotlin.collections.ArrayList
@@ -26,6 +23,12 @@ object Mocker {
             "https://filmschoolrejects.com/wp-content/" +
                     "uploads/2017/04/0JRofTsuy93evl_J5.jpg",
             "https://i.pinimg.com/originals/a4/4a/f3/a44af3bb5f074e3cdb4be8a56232c996.jpg"
+        )
+
+    @get:SuppressWarnings
+    val colors: List<String>
+        get() = listOf(
+            "Black", "White", "Red", "Transparent"
         )
 
     @get:SuppressWarnings
@@ -110,9 +113,35 @@ object Mocker {
             it.onSuccess(store)
         }
 
+    @get:SuppressWarnings
+    val cartProducts: CartProducts
+        get() {
+            val data = ArrayList<CartProduct>()
+            for (i in 1..50) {
+                data.add(
+                    CartProduct(
+                        id = i,
+                        name = "Item $i",
+                        color = colors.random(),
+                        bulk = "Bulk ${10 * i}",
+                        extra = "Apr 14 - Jun 8"
+                    )
+                )
+            }
+            return data
+        }
+
+    val singleCartProducts: Single<CartProducts>
+        get() = Single.create {
+            Thread.sleep(DELAY)
+            it.onSuccess(cartProducts)
+        }
+
+
     fun <T> getSingleEmptyList(): Single<List<T>> {
         return Single.create {
             it.onSuccess(emptyList())
         }
     }
+
 }

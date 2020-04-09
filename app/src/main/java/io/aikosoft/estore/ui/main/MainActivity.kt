@@ -1,11 +1,13 @@
 package io.aikosoft.estore.ui.main
 
+import android.content.Intent
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import com.google.android.material.navigation.NavigationView
 import io.aikosoft.estore.R
 import io.aikosoft.estore.base.BaseActivity
+import io.aikosoft.estore.ui.cart.CartActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -34,7 +36,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
 
         iv_checkout.setOnClickListener {
-            // TODO: open checkout activity
+            Intent(this, CartActivity::class.java).also {
+                startActivity(it)
+            }
         }
     }
 

@@ -21,6 +21,14 @@ object Mocker {
         )
 
     @get:SuppressWarnings
+    val avatarUrls: List<String?>
+        get() = listOf(
+            "https://filmschoolrejects.com/wp-content/" +
+                    "uploads/2017/04/0JRofTsuy93evl_J5.jpg",
+            "https://i.pinimg.com/originals/a4/4a/f3/a44af3bb5f074e3cdb4be8a56232c996.jpg"
+        )
+
+    @get:SuppressWarnings
     val products: Products
         get() {
             val products = ArrayList<Product>()
@@ -61,8 +69,7 @@ object Mocker {
                         id = i,
                         reviewerName = listOf("Maxim", "Alex", "Tom")[i - 1],
                         reviewedDate = Date(),
-                        reviewerAvatarUrl = "https://filmschoolrejects.com/wp-content/" +
-                                "uploads/2017/04/0JRofTsuy93evl_J5.jpg",
+                        reviewerAvatarUrl = avatarUrls.random(),
                         rating = 3.5 + 0.5 * i,
                         reviewMessage = "If you are building social network or chat app then " +
                                 "this post is really helpful. Logic behind this thing is " +
@@ -86,7 +93,8 @@ object Mocker {
                 id = 1,
                 name = "eStore",
                 rating = 4.5F,
-                ratedCount = 105
+                ratedCount = 105,
+                avatarUrl = avatarUrls.random()
             )
         }
 

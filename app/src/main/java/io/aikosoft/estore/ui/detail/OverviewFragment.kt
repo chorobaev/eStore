@@ -2,6 +2,7 @@ package io.aikosoft.estore.ui.detail
 
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
 import io.aikosoft.estore.R
 import io.aikosoft.estore.base.BaseFragment
 import io.aikosoft.estore.models.Product
@@ -66,6 +67,8 @@ class OverviewFragment : BaseFragment() {
         tv_store_rating_value.text = getString(R.string.rating_value, store.rating)
         tv_store_rated_count.text = getString(R.string.breck_int_breck, store.ratedCount)
         store_rating_bar.rating = store.rating
+
+        Picasso.get().load(store.avatarUrl).into(civ_store_avatar.imageView)
     }
 
     override fun onSetOnClickListeners() {

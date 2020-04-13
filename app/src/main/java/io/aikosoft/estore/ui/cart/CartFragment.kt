@@ -27,9 +27,11 @@ class CartFragment : BaseFragment() {
     }
 
     private fun initRecyclerView() {
-        cart_recycler_view.layoutManager = LinearLayoutManager(baseActivity)
-        cart_recycler_view.setHasFixedSize(true)
-        cart_recycler_view.adapter = cartProductAdapter
+        cart_recycler_view.run {
+            layoutManager = LinearLayoutManager(baseActivity)
+            setHasFixedSize(true)
+            adapter = cartProductAdapter
+        }
     }
 
     override fun onObserveViewModel() {

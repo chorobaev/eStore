@@ -9,8 +9,8 @@ import io.aikosoft.estore.models.Product
 import io.aikosoft.estore.models.Store
 import io.aikosoft.estore.ui.detail.adapters.ImageViewPagerAdapter
 import io.aikosoft.estore.views.ItemAddedSnackbar
-import kotlinx.android.synthetic.main.content_buy.*
 import kotlinx.android.synthetic.main.content_details_overview.*
+import kotlinx.android.synthetic.main.fragment_overview.*
 import kotlinx.android.synthetic.main.item_store.*
 import kotlinx.android.synthetic.main.view_store_review.*
 

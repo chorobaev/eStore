@@ -31,4 +31,10 @@
     <string name="cart_msg_items_in_cart">Items in Cart</string>
     <string name="cart_msg_ship_to">Ship to</string>
     <string name="cart_msg_pay_with">Pay with</string>
+    <string name="cart_msg_order_summary">Order Summary</string>
+    <string name="cart_msg_item_total">Item Total</string>
+    <string name="cart_msg_shipping">Shipping</string>
+    <string name="cart_msg_order_total">Order Total</string>
+    <string name="cart_msg_terms_of_use_and_privacy_policy">By pressing \"Checkout\" you agree to the Terms of Use and Privacy Policy.</string>
+    <string name="cart_msg_checkout">Checkout</string>
 </resources>

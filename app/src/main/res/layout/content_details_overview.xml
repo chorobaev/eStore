@@ -16,7 +16,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/images_view_pager"
             android:layout_width="match_parent"
-            android:layout_height="420dp" />
+            android:layout_height="20dp" />
     </io.aikosoft.estore.views.NestedScrollableHost>
 
     <TextView

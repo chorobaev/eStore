@@ -1,5 +1,6 @@
 package io.aikosoft.estore.data.repositories
 
+import io.aikosoft.estore.models.CartProduct
 import io.aikosoft.estore.models.CartProducts
 import io.aikosoft.estore.models.PaymentMethod
 import io.aikosoft.estore.models.ShippingAddress
@@ -9,7 +10,9 @@ interface UserRepository {
 
     fun getCartProducts(): Single<CartProducts>
 
-    fun getPaymentMathod(): Single<PaymentMethod>
+    fun getPaymentMethod(): Single<PaymentMethod>
 
     fun getShippingAddress(): Single<ShippingAddress>
+
+    fun changeProductQuantity(productId: Int, newQuantity: Int): Single<CartProduct>
 }

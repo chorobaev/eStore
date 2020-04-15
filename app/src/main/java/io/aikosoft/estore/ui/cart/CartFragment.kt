@@ -32,6 +32,11 @@ class CartFragment : BaseFragment() {
             setHasFixedSize(true)
             adapter = cartProductAdapter
         }
+
+        cartProductAdapter.setOnProductQuantityChangeListener { product ->
+            // TODO: implement quantity changing bottom sheet
+
+        }
     }
 
     override fun onObserveViewModel() {
@@ -41,6 +46,6 @@ class CartFragment : BaseFragment() {
     }
 
     private fun onCartProductsReceived(cartProducts: CartProducts) {
-        cartProductAdapter.addCartProducts(cartProducts)
+        cartProductAdapter.updateCartProducts(cartProducts)
     }
 }

@@ -7,4 +7,5 @@
     <color name="colorTextPrimary">#192A32</color>
     <color name="colorAccentSecondary">#FF5622</color>
     <color name="colorLightGray">#F3F8F8</color>
+    <color name="colorTextSecondary">#999</color>
 </resources>

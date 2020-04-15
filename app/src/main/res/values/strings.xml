@@ -11,7 +11,7 @@
     <string name="main_hint_search">I am shopping for …</string>
     <string name="browse_type_popular">Popular</string>
     <string name="browse_type_recently_viewed">Recently viewed</string>
-    <string name="float_currency">%.2f USD</string>
+    <string name="float_currency">$%.2f</string>
     <string name="int_percent">%d%%</string>
     <string name="browse_msg_almost_gone">Almost gone!</string>
     <string name="details_title">Details</string>
@@ -37,4 +37,7 @@
     <string name="cart_msg_order_total">Order Total</string>
     <string name="cart_msg_terms_of_use_and_privacy_policy">By pressing \"Checkout\" you agree to the Terms of Use and Privacy Policy.</string>
     <string name="cart_msg_checkout">Checkout</string>
+    <string name="cart_msg_shipping_semicolon">Shipping:</string>
+    <string name="strike_float_currency"><![CDATA[<strike>$%.2f</strike>]]></string>
+    <string name="str_coma_str">%s, %s</string>
 </resources>

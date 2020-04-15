@@ -9,7 +9,7 @@ import com.squareup.picasso.Picasso
 import io.aikosoft.estore.R
 import io.aikosoft.estore.models.Product
 import io.aikosoft.estore.utils.toVisibility
-import kotlinx.android.synthetic.main.item_product.view.*
+import kotlinx.android.synthetic.main.item_browse_product.view.*
 
 private typealias OnProductClickListener = ((Product) -> Unit)
 
@@ -20,7 +20,7 @@ class ProductGridAdapter : RecyclerView.Adapter<ProductGridAdapter.ViewHolder>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_product, parent, false)
+            .inflate(R.layout.item_browse_product, parent, false)
 
         return ViewHolder(view)
     }

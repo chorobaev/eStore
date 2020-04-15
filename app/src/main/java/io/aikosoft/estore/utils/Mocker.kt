@@ -117,14 +117,19 @@ object Mocker {
     val cartProducts: CartProducts
         get() {
             val data = ArrayList<CartProduct>()
-            for (i in 1..50) {
+            for (i in 1..5) {
                 data.add(
                     CartProduct(
                         id = i,
                         name = "Item $i",
+                        imageUrl = imageUrls.random(),
                         color = colors.random(),
                         bulk = "Bulk ${10 * i}",
-                        extra = "Apr 14 - Jun 8"
+                        extra = "Apr 14 - Jun 8",
+                        discountedPrice = 4.0,
+                        actualPrice = 5.0,
+                        shippingPrice = 1.0,
+                        quantity = 1
                     )
                 )
             }

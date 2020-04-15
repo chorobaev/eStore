@@ -1,14 +1,19 @@
 package io.aikosoft.estore.ui.cart.adapters
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import io.aikosoft.estore.R
 import io.aikosoft.estore.models.CartProduct
 import io.aikosoft.estore.models.CartProducts
 import io.aikosoft.estore.utils.MyLogger
+import kotlinx.android.synthetic.main.item_cart_product.view.*
+
+typealias OnProductQuantityChangeListener = (CartProduct) -> Unit
 
 class CartProductAdapter(
     @LayoutRes val headerLayoutRes: Int = -1,
@@ -16,6 +21,7 @@ class CartProductAdapter(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val cartProducts = ArrayList<CartProduct>()
+    private var onProductQuantityChangeListener: OnProductQuantityChangeListener? = null
 
     override fun getItemViewType(position: Int): Int {
         var type = PRODUCT
@@ -35,8 +41,7 @@ class CartProductAdapter(
         val inflater = LayoutInflater.from(parent.context);
         return when (viewType) {
             PRODUCT -> CartProductViewHolder(
-                inflater.inflate(R.layout.item_cart_product, parent, false),
-                cartProducts
+                inflater.inflate(R.layout.item_cart_product, parent, false)
             )
             HEADER -> HeaderViewHolder(inflater.inflate(headerLayoutRes, parent, false))
             FOOTER -> FooterViewHolder(inflater.inflate(footerLayoutRes, parent, false))
@@ -46,7 +51,7 @@ class CartProductAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is CartProductViewHolder) {
-            holder.bind(getRelativeAdapterPosition(position))
+            holder.bind(cartProducts[getRelativeAdapterPosition(position)])
         }
     }
 
@@ -72,7 +77,11 @@ class CartProductAdapter(
         return size
     }
 
-    fun addCartProducts(cartProducts: CartProducts) {
+    fun setOnProductQuantityChangeListener(listener: OnProductQuantityChangeListener) {
+        this.onProductQuantityChangeListener = listener
+    }
+
+    fun updateCartProducts(cartProducts: CartProducts) {
         this.cartProducts.run {
             clear()
             addAll(cartProducts)
@@ -80,13 +89,32 @@ class CartProductAdapter(
         notifyDataSetChanged()
     }
 
-    class CartProductViewHolder(
-        itemView: View,
-        private val cartProducts: CartProducts
-    ) : RecyclerView.ViewHolder(itemView), MyLogger {
+    inner class CartProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        MyLogger {
 
-        fun bind(position: Int) {
-            log("In view: ${cartProducts[position]}")
+
+        fun bind(product: CartProduct) {
+
+            with(itemView) {
+                tv_product_name.text = product.name
+                tv_discounted_price.text =
+                    context.getString(R.string.float_currency, product.discountedPrice)
+                tv_actual_price.text =
+                    context.getString(R.string.float_currency, product.actualPrice)
+                tv_actual_price.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG;
+                tv_bulk_and_color.text =
+                    context.getString(R.string.str_coma_str, product.bulk, product.color)
+                tv_shipping_price.text =
+                    context.getString(R.string.float_currency, product.shippingPrice)
+                tv_extra_information.text = product.extra
+                tv_quantity.text = product.quantity.toString()
+
+                Picasso.get().load(product.imageUrl).into(iv_product_image)
+
+                tv_quantity.setOnClickListener {
+                    onProductQuantityChangeListener?.invoke(cartProducts[adapterPosition])
+                }
+            }
         }
     }
 

@@ -1,8 +1,12 @@
 package io.aikosoft.estore.ui.cart
 
 import android.view.MenuItem
+import android.view.View
+import androidx.lifecycle.Observer
+import com.google.android.material.snackbar.Snackbar
 import io.aikosoft.estore.R
 import io.aikosoft.estore.base.BaseActivity
+import io.aikosoft.estore.views.CheckoutSuccessSnackbar
 import kotlinx.android.synthetic.main.activity_details.*
 
 class CartActivity : BaseActivity() {
@@ -26,6 +30,20 @@ class CartActivity : BaseActivity() {
             setHomeButtonEnabled(true)
             setDisplayHomeAsUpEnabled(true)
         }
+    }
+
+    override fun onObserveViewModel() {
+        cartViewModel.checkoutSuccess.observe(this, Observer {
+            val content = findViewById<View>(android.R.id.content)
+            CheckoutSuccessSnackbar.make(content, Snackbar.LENGTH_LONG)?.show()
+
+            Thread {
+                Thread.sleep(3000)
+                runOnUiThread {
+                    finish()
+                }
+            }.start()
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

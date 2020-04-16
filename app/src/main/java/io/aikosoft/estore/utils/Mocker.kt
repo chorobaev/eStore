@@ -8,7 +8,6 @@ import kotlin.collections.ArrayList
 object Mocker {
 
     private const val DELAY = 100L
-
     @get:SuppressWarnings
     val imageUrls: List<String>
         get() = listOf(
@@ -30,6 +29,11 @@ object Mocker {
         get() = listOf(
             "Black", "White", "Red", "Transparent"
         )
+
+    val singleString: Single<String>
+        get() = Single.create {
+            it.onSuccess("\"msg\": \"success\"")
+        }
 
     @get:SuppressWarnings
     val products: Products

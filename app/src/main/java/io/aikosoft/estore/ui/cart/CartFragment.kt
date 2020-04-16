@@ -1,13 +1,16 @@
 package io.aikosoft.estore.ui.cart
 
+import android.view.View
 import androidx.fragment.app.FragmentContainerView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.snackbar.Snackbar
 import io.aikosoft.estore.R
 import io.aikosoft.estore.base.BaseFragment
 import io.aikosoft.estore.models.CartProducts
 import io.aikosoft.estore.ui.cart.adapters.CartProductAdapter
+import io.aikosoft.estore.views.CheckoutSuccessSnackbar
 import kotlinx.android.synthetic.main.fragment_cart.*
 
 class CartFragment : BaseFragment() {
@@ -69,5 +72,11 @@ class CartFragment : BaseFragment() {
 
     private fun onCartProductsReceived(cartProducts: CartProducts) {
         cartProductAdapter.updateCartProducts(cartProducts)
+    }
+
+    override fun onSetOnClickListeners() {
+        btn_checkout.setOnClickListener {
+            cartViewModel.checkout()
+        }
     }
 }

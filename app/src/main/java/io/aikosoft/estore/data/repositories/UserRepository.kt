@@ -15,4 +15,6 @@ interface UserRepository {
     fun getShippingAddress(): Single<ShippingAddress>
 
     fun changeProductQuantity(productId: Int, newQuantity: Int): Single<CartProduct>
+
+    fun checkout(): Single<String>
 }

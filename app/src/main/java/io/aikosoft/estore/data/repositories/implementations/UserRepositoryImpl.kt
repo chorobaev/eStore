@@ -42,4 +42,8 @@ class UserRepositoryImpl(
             }
         }
     }
+
+    override fun checkout(): Single<String> {
+        return Mocker.singleString
+    }
 }

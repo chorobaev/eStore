@@ -4,6 +4,8 @@ import androidx.lifecycle.Observer
 import io.aikosoft.estore.R
 import io.aikosoft.estore.base.BaseFragment
 import io.aikosoft.estore.models.CartProducts
+import io.aikosoft.estore.utils.toVisibility
+import kotlinx.android.synthetic.main.content_order_summary.*
 import kotlinx.android.synthetic.main.fragment_order_summary.*
 
 class OrderSummaryFragment : BaseFragment() {
@@ -19,6 +21,11 @@ class OrderSummaryFragment : BaseFragment() {
     override fun onObserveViewModel() {
         cartViewModel.cartProducts.observe(this, Observer {
             it?.let { onCartProductsReceived(it) }
+        })
+
+        cartViewModel.loadingCartProducts.observe(this, Observer {
+            content_loading_order_summary.visibility = it.toVisibility()
+            content_order_summary.visibility = (it != true).toVisibility()
         })
     }
 

@@ -20,11 +20,17 @@ class CartProductAdapter(
     @LayoutRes val footerLayoutRes: Int = -1
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    var loading: Boolean = false
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
     private var cartProducts: ArrayList<CartProduct>? = null
     private var onProductQuantityChangeListener: OnProductQuantityChangeListener? = null
 
     override fun getItemViewType(position: Int): Int {
-        var type = PRODUCT
+        var type = if (loading) LOADING else PRODUCT
 
         if (headerLayoutRes != -1 && position == 0) {
             type = HEADER
@@ -40,6 +46,9 @@ class CartProductAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context);
         return when (viewType) {
+            LOADING -> LoadingViewHolder(
+                inflater.inflate(R.layout.item_loading_cart_product, parent, false)
+            )
             PRODUCT -> CartProductViewHolder(
                 inflater.inflate(R.layout.item_cart_product, parent, false)
             )
@@ -67,6 +76,10 @@ class CartProductAdapter(
 
     override fun getItemCount(): Int {
         var size = cartProducts?.size ?: 0
+
+        if (loading) {
+            size = 1
+        }
 
         if (headerLayoutRes != -1) {
             size++
@@ -124,9 +137,12 @@ class CartProductAdapter(
 
     class FooterViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
+    class LoadingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
     companion object {
         private const val PRODUCT = 0
         private const val HEADER = 1
         private const val FOOTER = 2
+        private const val LOADING = 3
     }
 }

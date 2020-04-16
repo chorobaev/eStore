@@ -18,6 +18,7 @@ class CartViewModel @Inject constructor(
     private val _cartProducts = MutableLiveData<CartProducts>()
     private val _paymentMethod = MutableLiveData<PaymentMethod>()
     private val _shippingAddress = MutableLiveData<ShippingAddress>()
+    private val _loadingCartProducts = MutableLiveData<Boolean>()
     private val _shouldConfirmRemoval = SingleLiveEvent<CartProduct>()
     private val _checkoutSuccess = SingleLiveEvent<Unit>()
 
@@ -26,6 +27,7 @@ class CartViewModel @Inject constructor(
     val cartProducts: LiveData<CartProducts> get() = _cartProducts
     val paymentMethod: LiveData<PaymentMethod> get() = _paymentMethod
     val shippingAddress: LiveData<ShippingAddress> get() = _shippingAddress
+    val loadingCartProducts: LiveData<Boolean> get() = _loadingCartProducts
     val shouldConfirmProductRemoval: LiveData<CartProduct> get() = _shouldConfirmRemoval
     val checkoutSuccess: LiveData<Unit> get() = _checkoutSuccess
 
@@ -48,9 +50,14 @@ class CartViewModel @Inject constructor(
     }
 
     private fun fetchCartProducts() {
-        userRepository.getCartProducts().request {
-            _cartProducts.value = it
-        }
+        _loadingCartProducts.value = true
+        userRepository.getCartProducts()
+            .doFinally {
+                _loadingCartProducts.postValue(false)
+            }
+            .request {
+                _cartProducts.value = it
+            }
     }
 
     fun changeProductQuantity(newQuantity: Int) {

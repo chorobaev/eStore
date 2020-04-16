@@ -36,7 +36,7 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/iv_checkout"
+                    android:id="@+id/iv_cart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_checkout" />

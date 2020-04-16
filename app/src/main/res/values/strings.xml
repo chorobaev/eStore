@@ -40,4 +40,5 @@
     <string name="cart_msg_shipping_semicolon">Shipping:</string>
     <string name="strike_float_currency"><![CDATA[<strike>$%.2f</strike>]]></string>
     <string name="str_coma_str">%s, %s</string>
+    <string name="cart_msg_select_quantity">Select Quantity</string>
 </resources>

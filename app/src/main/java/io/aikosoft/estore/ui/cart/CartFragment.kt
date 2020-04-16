@@ -1,7 +1,9 @@
 package io.aikosoft.estore.ui.cart
 
+import androidx.fragment.app.FragmentContainerView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import io.aikosoft.estore.R
 import io.aikosoft.estore.base.BaseFragment
 import io.aikosoft.estore.models.CartProducts
@@ -10,10 +12,10 @@ import kotlinx.android.synthetic.main.fragment_cart.*
 
 class CartFragment : BaseFragment() {
 
+    private lateinit var cartViewModel: CartViewModel
+    private lateinit var quantitySelectorBehavior: BottomSheetBehavior<FragmentContainerView>
     private val cartProductAdapter =
         CartProductAdapter(R.layout.content_cart_header, R.layout.content_cart_footer)
-
-    private lateinit var cartViewModel: CartViewModel
 
     override val layoutRes: Int get() = R.layout.fragment_cart
 
@@ -23,6 +25,9 @@ class CartFragment : BaseFragment() {
     }
 
     override fun onInitUI(firstInit: Boolean) {
+        quantitySelectorBehavior = BottomSheetBehavior.from(fragment_container_quantity_selector)
+        quantitySelectorBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+
         initRecyclerView()
     }
 
@@ -33,9 +38,9 @@ class CartFragment : BaseFragment() {
             adapter = cartProductAdapter
         }
 
-        cartProductAdapter.setOnProductQuantityChangeListener { product ->
-            // TODO: implement quantity changing bottom sheet
-
+        cartProductAdapter.setOnProductQuantityChangeListener { cartProduct ->
+            cartViewModel.selectedCartProductId = cartProduct.id
+            quantitySelectorBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         }
     }
 

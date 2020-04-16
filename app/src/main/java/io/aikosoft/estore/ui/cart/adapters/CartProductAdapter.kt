@@ -13,14 +13,14 @@ import io.aikosoft.estore.models.CartProducts
 import io.aikosoft.estore.utils.MyLogger
 import kotlinx.android.synthetic.main.item_cart_product.view.*
 
-typealias OnProductQuantityChangeListener = (CartProduct) -> Unit
+typealias OnProductQuantityChangeListener = (cartProduct: CartProduct) -> Unit
 
 class CartProductAdapter(
     @LayoutRes val headerLayoutRes: Int = -1,
     @LayoutRes val footerLayoutRes: Int = -1
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val cartProducts = ArrayList<CartProduct>()
+    private var cartProducts: ArrayList<CartProduct>? = null
     private var onProductQuantityChangeListener: OnProductQuantityChangeListener? = null
 
     override fun getItemViewType(position: Int): Int {
@@ -51,7 +51,9 @@ class CartProductAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is CartProductViewHolder) {
-            holder.bind(cartProducts[getRelativeAdapterPosition(position)])
+            cartProducts?.let {
+                holder.bind(it[getRelativeAdapterPosition(position)])
+            }
         }
     }
 
@@ -64,7 +66,7 @@ class CartProductAdapter(
     }
 
     override fun getItemCount(): Int {
-        var size = cartProducts.size
+        var size = cartProducts?.size ?: 0
 
         if (headerLayoutRes != -1) {
             size++
@@ -82,10 +84,7 @@ class CartProductAdapter(
     }
 
     fun updateCartProducts(cartProducts: CartProducts) {
-        this.cartProducts.run {
-            clear()
-            addAll(cartProducts)
-        }
+        this.cartProducts = ArrayList(cartProducts)
         notifyDataSetChanged()
     }
 
@@ -98,10 +97,10 @@ class CartProductAdapter(
             with(itemView) {
                 tv_product_name.text = product.name
                 tv_discounted_price.text =
-                    context.getString(R.string.float_currency, product.discountedPrice)
+                    context.getString(R.string.float_currency, product.totalDiscountedPrice)
                 tv_actual_price.text =
-                    context.getString(R.string.float_currency, product.actualPrice)
-                tv_actual_price.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG;
+                    context.getString(R.string.float_currency, product.totalActualPrice)
+                tv_actual_price.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
                 tv_bulk_and_color.text =
                     context.getString(R.string.str_coma_str, product.bulk, product.color)
                 tv_shipping_price.text =
@@ -112,7 +111,10 @@ class CartProductAdapter(
                 Picasso.get().load(product.imageUrl).into(iv_product_image)
 
                 tv_quantity.setOnClickListener {
-                    onProductQuantityChangeListener?.invoke(cartProducts[adapterPosition])
+                    cartProducts?.let {
+                        val position = getRelativeAdapterPosition(adapterPosition)
+                        onProductQuantityChangeListener?.invoke(it[position])
+                    }
                 }
             }
         }

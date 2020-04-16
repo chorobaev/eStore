@@ -14,4 +14,7 @@ abstract class CartFragmentBindingModule {
 
     @ContributesAndroidInjector
     abstract fun bindOrderSummaryFragment(): OrderSummaryFragment
+
+    @ContributesAndroidInjector
+    abstract fun bindQuantitySelectorFragment(): QuantitySelectorFragment
 }

@@ -13,4 +13,10 @@ data class CartProduct(
     val bulk: String? = null,
     val color: String? = null,
     val extra: String? = null
-)
+) {
+    val totalActualPrice: Double
+        get() = quantity * actualPrice
+
+    val totalDiscountedPrice: Double
+        get() = quantity * discountedPrice
+}

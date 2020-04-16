@@ -1,5 +1,6 @@
 package io.aikosoft.estore.ui.detail
 
+import android.view.View
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
@@ -8,6 +9,7 @@ import io.aikosoft.estore.base.BaseFragment
 import io.aikosoft.estore.models.Product
 import io.aikosoft.estore.models.Store
 import io.aikosoft.estore.ui.detail.adapters.ImageViewPagerAdapter
+import io.aikosoft.estore.utils.toVisibility
 import io.aikosoft.estore.views.ItemAddedSnackbar
 import kotlinx.android.synthetic.main.content_details_overview.*
 import kotlinx.android.synthetic.main.fragment_overview.*
@@ -44,6 +46,14 @@ class OverviewFragment : BaseFragment() {
                 if (product.imageUrls.isNotEmpty()) product.imageUrls.first() else ""
             ItemAddedSnackbar.make(view!!, productImage, 14.5, Snackbar.LENGTH_LONG)?.show()
         })
+
+        detailViewModel.loadingStoreReviews.observe(this, Observer {
+            store_reviews.loading = it == true
+        })
+
+        detailViewModel.loadingStore.observe(this, Observer {
+            loading_store_account.visibility = it.toVisibility()
+        })
     }
 
     private fun onProductReceived(product: Product) {
@@ -68,6 +78,7 @@ class OverviewFragment : BaseFragment() {
     }
 
     private fun onStoreReceived(store: Store) {
+        lay_item_store.visibility = View.VISIBLE
         tv_store_name.text = store.name
         tv_store_rating_value.text = getString(R.string.rating_value, store.rating)
         tv_store_rated_count.text = getString(R.string.breck_int_breck, store.ratedCount)

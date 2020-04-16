@@ -17,6 +17,13 @@ class StoreReviewView(context: Context, attributeSet: AttributeSet? = null) :
     FrameLayout(context, attributeSet), MyLogger {
 
     var showFirst = 3
+    var loading: Boolean = false
+        set(value) {
+            field = value
+            loading_reviews.visibility = value.toVisibility()
+            tv_no_store_reviews.visibility = View.GONE
+        }
+
     private var itemViews = ArrayList<View>()
 
     init {

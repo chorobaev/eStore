@@ -44,4 +44,5 @@
     <string name="cart_msg_remove_this_time">Remove this item from cart?</string>
     <string name="cart_msg_remove">Remove</string>
     <string name="cart_msg_checkout_success">Your order is on the way!</string>
+    <string name="main_msg_view_profile">View profile</string>
 </resources>

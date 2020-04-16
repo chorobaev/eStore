@@ -142,9 +142,21 @@
     </LinearLayout>
 
     <include
+        android:id="@+id/lay_item_store"
         layout="@layout/item_store"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@id/sold_by_section" />
+
+    <io.aikosoft.estore.views.AccountLoadingView
+        android:id="@+id/loading_store_account"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/lay_item_store"
+        app:layout_constraintEnd_toEndOf="@id/lay_item_store"
+        app:layout_constraintStart_toStartOf="@id/lay_item_store"
+        app:layout_constraintTop_toTopOf="@id/lay_item_store" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

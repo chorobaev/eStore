@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        tools:ignore="UnusedAttribute">
+
+        <View
+            android:id="@+id/shimmer_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/bg_shimmer"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/placeholder" />
+
+        <View
+            android:id="@+id/shimmer_price"
+            android:layout_width="0dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/dialog_horizontal_margin"
+            android:background="@drawable/bg_shimmer"
+            app:layout_constraintEnd_toEndOf="@id/shimmer_info"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shimmer_image" />
+
+        <View
+            android:id="@+id/shimmer_info"
+            android:layout_width="0dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="@dimen/dialog_horizontal_margin"
+            android:background="@drawable/bg_shimmer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/shimmer_price" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.facebook.shimmer.ShimmerFrameLayout>

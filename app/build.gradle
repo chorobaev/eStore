@@ -42,6 +42,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecyleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecyleVersion"
 
+    implementation "com.facebook.shimmer:shimmer:$shimmerVersion"
+
     implementation "com.google.android.material:material:$materialVersion"
 
     implementation "com.google.android.gms:play-services-location:$playServicesVersion"

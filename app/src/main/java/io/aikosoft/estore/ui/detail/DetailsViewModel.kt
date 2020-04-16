@@ -17,12 +17,16 @@ class DetailsViewModel @Inject constructor(
     private val _product = MutableLiveData<Product>()
     private val _storeReviews = MutableLiveData<StoreReviews>()
     private val _store = MutableLiveData<Store>()
-    private val _productAddingSucces = SingleLiveEvent<Unit>()
+    private val _productAddingSuccess = SingleLiveEvent<Unit>()
+    private val _loadingStoreReviews = MutableLiveData<Boolean>()
+    private val _loadingStore = MutableLiveData<Boolean>()
 
     val product: LiveData<Product> get() = _product
     val storeReviews: LiveData<StoreReviews> get() = _storeReviews
     val store: LiveData<Store> get() = _store
-    val productAddingToCartSuccess: LiveData<Unit> get() = _productAddingSucces
+    val productAddingToCartSuccess: LiveData<Unit> get() = _productAddingSuccess
+    val loadingStoreReviews: LiveData<Boolean> get() = _loadingStoreReviews
+    val loadingStore: LiveData<Boolean> get() = _loadingStore
 
     private val productId: Int
         get() = _product.value?.id ?: throw IllegalArgumentException("Product must not be null")
@@ -38,20 +42,30 @@ class DetailsViewModel @Inject constructor(
     }
 
     private fun fetchStoreReviews(productId: Int) {
-        productRepository.getStoreReviewsByProductId(productId).request {
-            _storeReviews.value = it
-        }
+        _loadingStoreReviews.value = true
+        productRepository.getStoreReviewsByProductId(productId)
+            .doFinally {
+                _loadingStoreReviews.postValue(false)
+            }
+            .request {
+                _storeReviews.value = it
+            }
     }
 
     private fun fetchStore(productId: Int) {
-        productRepository.getStoreByProductId(productId).request {
-            _store.value = it
-        }
+        _loadingStore.value = true
+        productRepository.getStoreByProductId(productId)
+            .doFinally {
+                _loadingStore.postValue(false)
+            }
+            .request {
+                _store.value = it
+            }
     }
 
     fun addProductToCart() {
         productRepository.addProductToCart(productId).request {
-            _productAddingSucces.call()
+            _productAddingSuccess.call()
         }
     }
 }

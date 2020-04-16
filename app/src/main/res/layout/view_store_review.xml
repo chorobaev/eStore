@@ -36,12 +36,23 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_no_store_reviews"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:textColor="#666"
-        android:text="@string/details_no_reviews"
-        android:layout_height="?attr/actionBarSize" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_no_store_reviews"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:gravity="center"
+            android:text="@string/details_no_reviews"
+            android:textColor="#666"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/loading_reviews"
+            layout="@layout/item_loading_account" />
+
+    </FrameLayout>
 
 </LinearLayout>

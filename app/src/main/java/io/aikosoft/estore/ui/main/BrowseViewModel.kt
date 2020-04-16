@@ -13,8 +13,10 @@ class BrowseViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     private val _products = MutableLiveData<Products>()
+    private val _productsLoading = MutableLiveData<Boolean>()
 
     val products: LiveData<Products> get() = _products
+    val productsLoading: LiveData<Boolean> get() = _productsLoading
 
     fun fetchProducts(pageType: BrowsePageType) {
         when (pageType) {
@@ -24,8 +26,13 @@ class BrowseViewModel @Inject constructor(
     }
 
     private fun fetchPopularProducts() {
-        productRepository.getPopularProducts().request {
-            _products.value = it
-        }
+        _productsLoading.value = true
+        productRepository.getPopularProducts()
+            .doFinally {
+                _productsLoading.postValue(false)
+            }
+            .request {
+                _products.value = it
+            }
     }
 }

@@ -9,7 +9,7 @@ import io.aikosoft.estore.models.BrowsePageType
 import io.aikosoft.estore.models.Product
 import io.aikosoft.estore.ui.detail.DetailsActivity
 import io.aikosoft.estore.ui.main.adapters.ProductGridAdapter
-import io.aikosoft.estore.utils.pxToDp
+import io.aikosoft.estore.utils.toVisibility
 import kotlinx.android.synthetic.main.fragment_page_browse.*
 
 class BrowsePageFragment : BaseFragment() {
@@ -53,6 +53,11 @@ class BrowsePageFragment : BaseFragment() {
         })
 
         browseViewModel.fetchProducts(BrowsePageType.Popular)
+
+        browseViewModel.productsLoading.observe(this, Observer {
+            touch_disabling.visibility = it.toVisibility()
+            productGridAdapter.loading = it == true
+        })
     }
 
     override fun onDestroy() {

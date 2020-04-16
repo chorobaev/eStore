@@ -14,32 +14,61 @@ import kotlinx.android.synthetic.main.item_browse_product.view.*
 
 private typealias OnProductClickListener = ((Product) -> Unit)
 
-class ProductGridAdapter : RecyclerView.Adapter<ProductGridAdapter.ViewHolder>() {
+class ProductGridAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var onProductClickListener: OnProductClickListener? = null
     private var products = ArrayList<Product>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    var loading: Boolean = false
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (loading) LOADING else PRODUCT
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            PRODUCT -> ViewHolder(getView(parent, viewType))
+            LOADING -> LoadingViewHolder(getView(parent, viewType))
+            else -> throw IllegalArgumentException("No such view type $viewType")
+        }
+    }
+
+    private fun getView(parent: ViewGroup, viewType: Int): View {
+        var layoutId = R.layout.item_browse_product
+        var imageId = R.id.iv_image
+
+        if (viewType == LOADING) {
+            layoutId = R.layout.item_loading_browse_product
+            imageId = R.id.shimmer_image
+        }
+
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_browse_product, parent, false)
+            .inflate(layoutId, parent, false)
 
         val marginsInPx = dpToPx(parent.context, 8F)
         val screenWidth = parent.resources.displayMetrics.widthPixels.toFloat()
         val imageHeight = (screenWidth / 2 - marginsInPx)
 
-        view.iv_image.run {
+        val image = view.findViewById<View>(imageId)
+        image.run {
             layoutParams = layoutParams.apply { height = imageHeight.toInt() }
         }
 
-        return ViewHolder(view)
+        return view
     }
 
     override fun getItemCount(): Int {
-        return products.size
+        return if (loading) LOADING_ITEMS else products.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(products[position])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if (holder is ViewHolder) {
+            holder.bind(products[position])
+        }
     }
 
     fun addProducts(products: List<Product>) {
@@ -79,5 +108,13 @@ class ProductGridAdapter : RecyclerView.Adapter<ProductGridAdapter.ViewHolder>()
                 }
             }
         }
+    }
+
+    class LoadingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+    companion object {
+        private const val LOADING_ITEMS = 8
+        private const val LOADING = 1
+        private const val PRODUCT = 0
     }
 }

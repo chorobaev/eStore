@@ -7,7 +7,7 @@ import kotlin.collections.ArrayList
 
 object Mocker {
 
-    private const val DELAY = 100L
+    private const val DELAY = 2000L
     @get:SuppressWarnings
     val imageUrls: List<String>
         get() = listOf(
@@ -52,7 +52,7 @@ object Mocker {
                         rating = 3 + 0.2 * i,
                         ratedCount = 10 + 5 * i,
                         discount = if (i % 3 == 0) 0 else 10 + i,
-                        imageUrls = imageUrls,
+                        imageUrls = imageUrls.shuffled(),
                         isAlmostGone = i % 5 == 0
                     )
                 )
@@ -189,5 +189,4 @@ object Mocker {
             it.onSuccess(emptyList())
         }
     }
-
 }

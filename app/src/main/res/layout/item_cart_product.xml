@@ -17,7 +17,7 @@
     <ImageView
         android:id="@+id/iv_product_image"
         android:layout_width="80dp"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:scaleType="fitXY"

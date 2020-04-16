@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import io.aikosoft.estore.R
 import io.aikosoft.estore.models.Product
+import io.aikosoft.estore.utils.dpToPx
 import io.aikosoft.estore.utils.toVisibility
 import kotlinx.android.synthetic.main.item_browse_product.view.*
 
@@ -21,6 +22,14 @@ class ProductGridAdapter : RecyclerView.Adapter<ProductGridAdapter.ViewHolder>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_browse_product, parent, false)
+
+        val marginsInPx = dpToPx(parent.context, 8F)
+        val screenWidth = parent.resources.displayMetrics.widthPixels.toFloat()
+        val imageHeight = (screenWidth / 2 - marginsInPx)
+
+        view.iv_image.run {
+            layoutParams = layoutParams.apply { height = imageHeight.toInt() }
+        }
 
         return ViewHolder(view)
     }

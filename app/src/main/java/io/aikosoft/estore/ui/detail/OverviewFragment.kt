@@ -58,6 +58,11 @@ class OverviewFragment : BaseFragment() {
     }
 
     private fun initImageViewPager() {
+        val height = resources.displayMetrics.widthPixels
+        images_view_pager.run {
+            layoutParams = layoutParams.apply { this.height = height }
+        }
+
         imageViewPagerAdapter = ImageViewPagerAdapter(this, product.imageUrls)
         images_view_pager.adapter = imageViewPagerAdapter
     }

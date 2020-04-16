@@ -22,7 +22,7 @@ class CartActivity : BaseActivity() {
     private fun initAppBar() {
         setSupportActionBar(toolbar)
         supportActionBar?.run {
-            setHomeAsUpIndicator(R.drawable.ic_close)
+            setHomeAsUpIndicator(R.drawable.ic_close_light)
             setHomeButtonEnabled(true)
             setDisplayHomeAsUpEnabled(true)
         }

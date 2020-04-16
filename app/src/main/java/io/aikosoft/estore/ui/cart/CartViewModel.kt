@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import io.aikosoft.estore.base.BaseViewModel
 import io.aikosoft.estore.data.repositories.UserRepository
+import io.aikosoft.estore.models.CartProduct
 import io.aikosoft.estore.models.CartProducts
 import io.aikosoft.estore.models.PaymentMethod
 import io.aikosoft.estore.models.ShippingAddress
@@ -17,14 +18,14 @@ class CartViewModel @Inject constructor(
     private val _cartProducts = MutableLiveData<CartProducts>()
     private val _paymentMethod = MutableLiveData<PaymentMethod>()
     private val _shippingAddress = MutableLiveData<ShippingAddress>()
-    private val _shouldSelectQuantity = SingleLiveEvent<Int>()
+    private val _shouldConfirmRemoval = SingleLiveEvent<CartProduct>()
 
-    var selectedCartProductId: Int? = null
+    var selectedCartProduct: CartProduct? = null
 
     val cartProducts: LiveData<CartProducts> get() = _cartProducts
     val paymentMethod: LiveData<PaymentMethod> get() = _paymentMethod
     val shippingAddress: LiveData<ShippingAddress> get() = _shippingAddress
-    val shouldSelectQuantity: LiveData<Int> get() = _shouldSelectQuantity
+    val shouldConfirmProductRemoval: LiveData<CartProduct> get() = _shouldConfirmRemoval
 
     fun fetchData() {
         fetchPaymentMethod()
@@ -51,7 +52,19 @@ class CartViewModel @Inject constructor(
     }
 
     fun changeProductQuantity(newQuantity: Int) {
-        val productId = selectedCartProductId ?: return
+        if (newQuantity == 0) {
+            _shouldConfirmRemoval.value = selectedCartProduct
+        } else {
+            setProductQuantity(newQuantity)
+        }
+    }
+
+    fun removeProduct() {
+        setProductQuantity(newQuantity = 0)
+    }
+
+    private fun setProductQuantity(newQuantity: Int) {
+        val productId = selectedCartProduct?.id ?: return
 
         userRepository.changeProductQuantity(productId, newQuantity).request {
             _cartProducts.value = cartProducts.value?.asSequence()

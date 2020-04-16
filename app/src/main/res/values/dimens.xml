@@ -5,4 +5,6 @@
     <dimen name="icon_size">46dp</dimen>
     <dimen name="activity_small_vertical_margin">8dp</dimen>
     <dimen name="activity_small_horizontal_margin">8dp</dimen>
+    <dimen name="dialog_horizontal_margin">32dp</dimen>
+    <dimen name="dialog_vertical_margin">32dp</dimen>
 </resources>

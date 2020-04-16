@@ -14,6 +14,7 @@ class CartFragment : BaseFragment() {
 
     private lateinit var cartViewModel: CartViewModel
     private lateinit var quantitySelectorBehavior: BottomSheetBehavior<FragmentContainerView>
+    private lateinit var productRemovalConfirmDialog: ProductRemovalConfirmDialog
     private val cartProductAdapter =
         CartProductAdapter(R.layout.content_cart_header, R.layout.content_cart_footer)
 
@@ -25,10 +26,22 @@ class CartFragment : BaseFragment() {
     }
 
     override fun onInitUI(firstInit: Boolean) {
+        initQuantitySelectingSheetBehavior()
+        initProductRemovalConfirmDialog()
+        initRecyclerView()
+    }
+
+    private fun initQuantitySelectingSheetBehavior() {
         quantitySelectorBehavior = BottomSheetBehavior.from(fragment_container_quantity_selector)
         quantitySelectorBehavior.state = BottomSheetBehavior.STATE_HIDDEN
+    }
 
-        initRecyclerView()
+    private fun initProductRemovalConfirmDialog() {
+        productRemovalConfirmDialog = ProductRemovalConfirmDialog(baseActivity)
+
+        productRemovalConfirmDialog.setOnRemoveListener {
+            cartViewModel.removeProduct()
+        }
     }
 
     private fun initRecyclerView() {
@@ -39,7 +52,7 @@ class CartFragment : BaseFragment() {
         }
 
         cartProductAdapter.setOnProductQuantityChangeListener { cartProduct ->
-            cartViewModel.selectedCartProductId = cartProduct.id
+            cartViewModel.selectedCartProduct = cartProduct
             quantitySelectorBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         }
     }
@@ -47,6 +60,10 @@ class CartFragment : BaseFragment() {
     override fun onObserveViewModel() {
         cartViewModel.cartProducts.observe(this, Observer {
             it?.let { onCartProductsReceived(it) }
+        })
+
+        cartViewModel.shouldConfirmProductRemoval.observe(this, Observer {
+            it?.let { productRemovalConfirmDialog.show(it) }
         })
     }
 

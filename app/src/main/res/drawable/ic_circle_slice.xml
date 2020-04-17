@@ -1,0 +1,18 @@
+<!-- drawable/circle_slice_8.xml -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="16"
+    android:viewportHeight="16">
+    <path
+        android:fillColor="?android:attr/colorBackground"
+        android:pathData="
+        M0 0 L 100,0 0,100 z
+
+        0M8
+        0C3.58   0     0     3.58  0
+        8C0      12.42 3.58  16    8
+        16C12.42 16    16    12.42 16
+        8C16     3.58  12.42 0     8 0Z
+" />
+</vector>

@@ -4,9 +4,10 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
-import io.aikosoft.estore.data.network.SampleClient
-import io.aikosoft.estore.di.utils.BaseMVVMApp
+import io.aikosoft.estore.data.network.ProductClient
+import io.aikosoft.estore.data.network.UserClient
 import io.aikosoft.estore.di.utils.BaseUrl
+import io.aikosoft.estore.di.utils.eStore
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -48,13 +49,21 @@ class ApplicationModule {
 
     @Singleton
     @Provides
-    fun provideK2TaxiRetrofit(
+    @eStore
+    fun provideEStoreRetrofit(
         @BaseUrl baseUrl: String,
         retrofitBuilder: Retrofit.Builder
     ): Retrofit = retrofitBuilder.baseUrl(baseUrl).build()
 
     @Singleton
     @Provides
-    fun provideOrderClient(@BaseMVVMApp retrofit: Retrofit): SampleClient =
-        retrofit.create(SampleClient::class.java)
+    fun provideProductClient(@eStore retrofit: Retrofit): ProductClient =
+        retrofit.create(ProductClient::class.java)
+
+    @Singleton
+    @Provides
+    fun provideUserClient(@eStore retrofit: Retrofit): UserClient =
+        retrofit.create(UserClient::class.java)
+
+
 }

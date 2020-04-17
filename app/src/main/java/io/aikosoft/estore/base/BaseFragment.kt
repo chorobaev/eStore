@@ -9,9 +9,10 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import dagger.android.support.DaggerFragment
+import io.aikosoft.estore.utils.MyLogger
 import javax.inject.Inject
 
-abstract class BaseFragment : DaggerFragment() {
+abstract class BaseFragment : DaggerFragment(), MyLogger {
 
     @Inject lateinit var viewModelFactory: ViewModelFactory
     private var activity: AppCompatActivity? = null

@@ -11,5 +11,5 @@ class AppConstantsModule {
     @get:Provides
     @get:Singleton
     @get:BaseUrl
-    val baseUrl: String = "YOUR_ENDPOINT"
+    val baseUrl: String = "https://www.google.com"
 }

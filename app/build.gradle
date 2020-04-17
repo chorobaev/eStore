@@ -7,8 +7,8 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "io.jachoteam.taxiappclient"
-        minSdkVersion 16
+        applicationId "io.aikosoft.estore"
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 10
         versionName "v1.1.0"
@@ -37,9 +37,12 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintVersion"
     implementation "androidx.core:core-ktx:$coreVersion"
+    implementation "androidx.viewpager2:viewpager2:$viewPager2Version"
 
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecyleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecyleVersion"
+
+    implementation "com.facebook.shimmer:shimmer:$shimmerVersion"
 
     implementation "com.google.android.material:material:$materialVersion"
 
@@ -56,6 +59,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
     implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
 
+    implementation "com.squareup.picasso:picasso:$picassoVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-scalars:$retrofitVersion"

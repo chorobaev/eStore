@@ -18,7 +18,7 @@ import javax.inject.Singleton
 
 @Module(
     includes = [
-        ViewModelModule::class,
+        ViewModelBindingModule::class,
         AppConstantsModule::class,
         ActivityBindingModule::class,
         ServiceBindingModule::class

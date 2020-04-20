@@ -8,8 +8,11 @@ import io.aikosoft.estore.models.PaymentMethod
 import io.aikosoft.estore.models.ShippingAddress
 import io.aikosoft.estore.utils.Mocker
 import io.reactivex.Single
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class UserRepositoryImpl(
+@Singleton
+class UserRepositoryImpl @Inject constructor(
     private val userClient: UserClient
 ) : UserRepository {
 

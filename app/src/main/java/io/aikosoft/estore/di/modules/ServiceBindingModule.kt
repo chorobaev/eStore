@@ -5,8 +5,8 @@ import dagger.android.ContributesAndroidInjector
 import io.aikosoft.estore.sevices.SampleService
 
 @Module
-abstract class ServiceBindingModule {
+interface ServiceBindingModule {
 
     @ContributesAndroidInjector
-    abstract fun bindLocationService(): SampleService
+    fun bindLocationService(): SampleService
 }

@@ -14,28 +14,28 @@ import io.jachoteam.taxiappclient.di.util.ViewModelKey
 
 
 @Module
-abstract class ViewModelModule {
+interface ViewModelBindingModule {
 
     @Binds
     @IntoMap
     @ViewModelKey(CommonViewModel::class)
-    abstract fun bindCommonViewModel(commonViewModel: CommonViewModel): ViewModel
+    fun bindCommonViewModel(commonViewModel: CommonViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(BrowseViewModel::class)
-    abstract fun bindMainViewModel(mainViewModel: BrowseViewModel): ViewModel
+    fun bindMainViewModel(mainViewModel: BrowseViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(DetailsViewModel::class)
-    abstract fun bindDetailViewModel(detailViewModel: DetailsViewModel): ViewModel
+    fun bindDetailViewModel(detailViewModel: DetailsViewModel): ViewModel
 
     @Binds
     @IntoMap
     @ViewModelKey(CartViewModel::class)
-    abstract fun bindCartViewModel(cartViewModel: CartViewModel): ViewModel
+    fun bindCartViewModel(cartViewModel: CartViewModel): ViewModel
 
     @Binds
-    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+    fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }

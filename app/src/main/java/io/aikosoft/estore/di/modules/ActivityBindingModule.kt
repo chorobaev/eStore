@@ -10,14 +10,14 @@ import io.aikosoft.estore.ui.main.MainActivity
 import io.aikosoft.estore.ui.main.MainFragmentBindingModule
 
 @Module
-abstract class ActivityBindingModule {
+interface ActivityBindingModule {
 
     @ContributesAndroidInjector(modules = [MainFragmentBindingModule::class])
-    abstract fun bindMainActivity(): MainActivity
+    fun bindMainActivity(): MainActivity
 
     @ContributesAndroidInjector(modules = [DetailFragmentBindingModule::class])
-    abstract fun bindDetailsActivity(): DetailsActivity
+    fun bindDetailsActivity(): DetailsActivity
 
     @ContributesAndroidInjector(modules = [CartFragmentBindingModule::class])
-    abstract fun bindCartActivity(): CartActivity
+    fun bindCartActivity(): CartActivity
 }

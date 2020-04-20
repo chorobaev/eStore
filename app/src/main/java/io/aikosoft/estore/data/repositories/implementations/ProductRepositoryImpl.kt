@@ -7,8 +7,11 @@ import io.aikosoft.estore.models.Store
 import io.aikosoft.estore.models.StoreReviews
 import io.aikosoft.estore.utils.Mocker
 import io.reactivex.Single
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class ProductRepositoryImpl(
+@Singleton
+class ProductRepositoryImpl @Inject constructor(
     private val productClient: ProductClient
 ) : ProductRepository {
 
